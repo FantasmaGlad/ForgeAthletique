@@ -1,0 +1,5 @@
+# Redirections pour React Router (SPA)
+# Toutes les requêtes sont redirigées vers index.html
+# sauf les fichiers statiques existants
+
+/*    /index.html   200
