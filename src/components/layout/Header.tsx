@@ -3,11 +3,13 @@
  */
 
 import { useState } from 'react';
-import { Bell, Search } from 'lucide-react';
+import { Bell, Search, LogOut } from 'lucide-react';
 import { Button, Modal } from '../ui';
 import { CoachProfileForm } from '../forms';
+import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { supabaseCoachService } from '../../services';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { coachService } from '../../services';
 
 interface HeaderProps {
   title?: string;
@@ -16,13 +18,20 @@ interface HeaderProps {
 
 export function Header({ title = 'Tableau de Bord', subtitle }: HeaderProps) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
 
-  // Récupérer le profil coach
-  const coachProfile = useLiveQuery(() => coachService.getProfile());
+  const coachProfile = useLiveQuery(async () => {
+    try {
+      return await supabaseCoachService.getCurrentProfile();
+    } catch {
+      return null;
+    }
+  });
 
   const handleSaveProfile = async (data: any) => {
     try {
-      await coachService.saveProfile(data);
+      await supabaseCoachService.updateProfile(data);
       setIsProfileModalOpen(false);
     } catch (error) {
       console.error('Erreur lors de la sauvegarde du profil:', error);
@@ -30,7 +39,11 @@ export function Header({ title = 'Tableau de Bord', subtitle }: HeaderProps) {
     }
   };
 
-  // Initiales pour l'avatar
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/login');
+  };
+
   const initials = coachProfile
     ? `${coachProfile.firstName[0]}${coachProfile.lastName[0]}`.toUpperCase()
     : 'CP';
@@ -75,6 +88,11 @@ export function Header({ title = 'Tableau de Bord', subtitle }: HeaderProps) {
               {initials}
             </span>
           </button>
+
+          {/* Déconnexion */}
+          <Button variant="ghost" onClick={handleSignOut} title="Se déconnecter">
+            <LogOut size={20} />
+          </Button>
         </div>
       </header>
 
@@ -86,7 +104,7 @@ export function Header({ title = 'Tableau de Bord', subtitle }: HeaderProps) {
         size="lg"
       >
         <CoachProfileForm
-          profile={coachProfile}
+          profile={coachProfile || undefined}
           onSubmit={handleSaveProfile}
           onCancel={() => setIsProfileModalOpen(false)}
         />

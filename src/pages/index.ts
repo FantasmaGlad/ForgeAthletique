@@ -15,3 +15,4 @@ export { EnduranceInput } from './EnduranceInput';
 export { MeasurementHistory } from './MeasurementHistory';
 export { TrainingJournal } from './TrainingJournal';
 export { Settings } from './Settings';
+export { Login } from './Login';
