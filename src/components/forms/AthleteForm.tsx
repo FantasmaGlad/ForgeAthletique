@@ -60,7 +60,7 @@ export function AthleteForm({ athlete, onSubmit, onCancel }: AthleteFormProps) {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Identité */}
       <div>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Identité</h3>
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">Identité</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label="Prénom"
@@ -123,7 +123,7 @@ export function AthleteForm({ athlete, onSubmit, onCancel }: AthleteFormProps) {
 
       {/* Sport & Discipline */}
       <div>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Sport & Discipline</h3>
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">Sport & Discipline</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label="Sport"
@@ -134,7 +134,7 @@ export function AthleteForm({ athlete, onSubmit, onCancel }: AthleteFormProps) {
             placeholder="ex: Football, Rugby, Athlétisme..."
           />
           <Input
-            label="Discipline / Spécialité"
+            label="Discipline ou spécialité"
             value={formData.discipline}
             onChange={(e) => handleChange('discipline', e.target.value)}
             fullWidth
@@ -159,7 +159,7 @@ export function AthleteForm({ athlete, onSubmit, onCancel }: AthleteFormProps) {
       </div>
 
       {/* Actions */}
-      <div className="flex justify-end gap-3 pt-4 border-t border-background-tertiary">
+      <div className="flex justify-end gap-3 pt-4 border-t border-slate-200">
         <Button variant="secondary" onClick={onCancel} type="button">
           Annuler
         </Button>

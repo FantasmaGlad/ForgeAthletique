@@ -53,7 +53,7 @@ export function CoachProfileForm({ profile, onSubmit, onCancel }: CoachProfileFo
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Identité */}
       <div>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Informations Personnelles</h3>
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">Informations personnelles</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label="Prénom"
@@ -88,7 +88,7 @@ export function CoachProfileForm({ profile, onSubmit, onCancel }: CoachProfileFo
 
       {/* Spécialisation */}
       <div>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Professionnel</h3>
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">Informations professionnelles</h3>
         <div className="space-y-4">
           <Input
             label="Spécialisation"
@@ -98,13 +98,13 @@ export function CoachProfileForm({ profile, onSubmit, onCancel }: CoachProfileFo
             placeholder="ex: Préparation physique, Force & Conditionnement..."
           />
           <div>
-            <label className="block text-sm font-medium text-text-primary mb-2">
-              Bio / Présentation
+            <label className="block text-sm font-semibold text-slate-700 mb-2">
+              Biographie / Présentation
             </label>
             <textarea
               value={formData.bio}
               onChange={(e) => handleChange('bio', e.target.value)}
-              className="w-full px-4 py-2 bg-background-primary border border-background-tertiary rounded-lg text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-primary/30 min-h-[100px]"
+              className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 min-h-[100px] transition-all"
               placeholder="Quelques mots sur vous, votre expérience..."
             />
           </div>
@@ -112,7 +112,7 @@ export function CoachProfileForm({ profile, onSubmit, onCancel }: CoachProfileFo
       </div>
 
       {/* Actions */}
-      <div className="flex justify-end gap-3 pt-4 border-t border-background-tertiary">
+      <div className="flex justify-end gap-3 pt-4 border-t border-slate-200">
         <Button variant="secondary" onClick={onCancel} type="button">
           Annuler
         </Button>

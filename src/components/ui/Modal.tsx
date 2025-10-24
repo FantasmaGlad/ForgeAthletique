@@ -61,31 +61,28 @@ export function Modal({
       {/* Modal */}
       <div
         className={clsx(
-          'relative w-full bg-background-secondary rounded-lg shadow-2xl',
-          'border border-background-tertiary',
+          'relative w-full bg-white rounded-xl shadow-2xl',
+          'border border-slate-200',
           'flex flex-col max-h-[90vh]',
           sizes[size]
         )}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-background-tertiary">
-          <h2 className="text-xl font-bold text-text-primary">{title}</h2>
+        <div className="flex items-center justify-between p-6 border-b border-slate-200">
+          <h2 className="text-xl font-bold text-slate-900">{title}</h2>
           <button
             onClick={onClose}
-            className="text-text-muted hover:text-text-primary transition-colors"
+            className="text-slate-400 hover:text-slate-600 transition-colors"
           >
             <X size={24} />
           </button>
         </div>
 
-        {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">
           {children}
         </div>
 
-        {/* Footer */}
         {footer && (
-          <div className="flex items-center justify-end gap-3 p-6 border-t border-background-tertiary">
+          <div className="flex items-center justify-end gap-3 p-6 border-t border-slate-200">
             {footer}
           </div>
         )}

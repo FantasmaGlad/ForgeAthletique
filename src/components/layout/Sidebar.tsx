@@ -8,10 +8,7 @@ import {
   Home,
   Users,
   BarChart3,
-  Calendar,
   Settings,
-  TrendingUp,
-  Dumbbell,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -22,14 +19,11 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { to: '/', icon: <Home size={20} />, label: 'Mon Tableau de Bord' },
+  { to: '/', icon: <Home size={20} />, label: 'Tableau de bord' },
   { to: '/athletes', icon: <Users size={20} />, label: 'Athlètes' },
-  { to: '/wellness', icon: <Activity size={20} />, label: 'Wellness' },
+  { to: '/wellness', icon: <Activity size={20} />, label: 'Bien-être' },
   { to: '/analytics', icon: <BarChart3 size={20} />, label: 'Analyses' },
   { to: '/settings', icon: <Settings size={20} />, label: 'Paramètres' },
-  { to: '/training', icon: <Dumbbell size={20} />, label: 'Entraînement' },
-  { to: '/performance', icon: <TrendingUp size={20} />, label: 'Performance' },
-  { to: '/planning', icon: <Calendar size={20} />, label: 'Planification' },
 ];
 
 export function Sidebar() {
