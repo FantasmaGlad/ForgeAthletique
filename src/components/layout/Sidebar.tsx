@@ -34,55 +34,44 @@ const navItems: NavItem[] = [
 
 export function Sidebar() {
   return (
-    <aside className="w-64 h-screen bg-background-secondary border-r border-background-tertiary flex flex-col">
-      {/* Logo / Header */}
-      <div className="p-6 border-b border-background-tertiary">
+    <aside className="w-64 h-screen bg-slate-900 border-r border-slate-800 flex flex-col">
+      <div className="p-6 border-b border-slate-800">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-accent-primary/20 flex items-center justify-center">
-            <Activity className="w-6 h-6 text-accent-primary" strokeWidth={2.5} />
-          </div>
+          <img src="/logoforge.png" alt="La Forge Athlétique" className="w-10 h-10" />
           <div>
-            <h1 className="text-lg font-bold text-text-primary">La Forge</h1>
-            <p className="text-xs text-text-muted">Athlétique</p>
+            <h1 className="text-lg font-bold text-white">La Forge</h1>
+            <p className="text-xs text-slate-400">Athlétique</p>
           </div>
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
+            end={item.to === '/'}
             className={({ isActive }) =>
               clsx(
                 'flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200',
-                'text-text-secondary hover:text-text-primary hover:bg-background-tertiary',
-                isActive && 'bg-accent-primary/10 text-accent-primary hover:bg-accent-primary/20 shadow-glow-blue'
+                'text-slate-400 hover:text-white hover:bg-slate-800',
+                isActive && 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-900/50'
               )
             }
           >
             <span className="flex-shrink-0">{item.icon}</span>
-            <span className="font-medium">{item.label}</span>
+            <span className="font-medium text-sm">{item.label}</span>
           </NavLink>
         ))}
       </nav>
 
-      {/* Footer - Paramètres */}
-      <div className="p-4 border-t border-background-tertiary">
-        <NavLink
-          to="/settings"
-          className={({ isActive }) =>
-            clsx(
-              'flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200',
-              'text-text-secondary hover:text-text-primary hover:bg-background-tertiary',
-              isActive && 'bg-accent-primary/10 text-accent-primary'
-            )
-          }
-        >
-          <Settings size={20} />
-          <span className="font-medium">Paramètres</span>
-        </NavLink>
+      <div className="p-4 border-t border-slate-800">
+        <div className="bg-slate-800 rounded-lg p-4">
+          <p className="text-xs text-slate-400 mb-2">Besoin d'aide ?</p>
+          <button className="text-sm text-blue-400 hover:text-blue-300 font-medium">
+            Documentation
+          </button>
+        </div>
       </div>
     </aside>
   );

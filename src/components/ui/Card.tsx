@@ -28,21 +28,21 @@ export function Card({
   return (
     <div
       className={clsx(
-        'bg-background-secondary rounded-lg border border-background-tertiary',
-        glowEffect && 'shadow-glow-blue',
+        'bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow',
+        glowEffect && 'shadow-lg shadow-blue-500/10',
         className
       )}
     >
       {(title || headerAction) && (
-        <div className="px-6 py-4 border-b border-background-tertiary flex items-center justify-between">
+        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
           <div>
             {title && (
-              <h3 className="text-lg font-semibold text-text-primary">
+              <h3 className="text-lg font-bold text-slate-900">
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="text-sm text-text-secondary mt-1">
+              <p className="text-sm text-slate-600 mt-1">
                 {subtitle}
               </p>
             )}

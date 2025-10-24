@@ -50,49 +50,62 @@ export function Header({ title = 'Tableau de Bord', subtitle }: HeaderProps) {
 
   return (
     <>
-      <header className="h-16 bg-background-secondary border-b border-background-tertiary px-6 flex items-center justify-between">
-        {/* Titre de la page */}
-        <div>
-          <h2 className="text-xl font-bold text-text-primary">{title}</h2>
-          {subtitle && <p className="text-sm text-text-secondary">{subtitle}</p>}
+      <header className="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+        <div className="flex items-center gap-4">
+          <img src="/logoforge.png" alt="La Forge Athlétique" className="w-8 h-8" />
+          <div>
+            <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+            {subtitle && <p className="text-xs text-slate-500">{subtitle}</p>}
+          </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-4">
-          {/* Barre de recherche */}
-          <div className="relative w-64">
+        <div className="flex items-center gap-3">
+          <div className="relative w-64 hidden md:block">
             <input
               type="search"
               placeholder="Rechercher..."
-              className="w-full px-4 py-2 pl-10 bg-background-primary border border-background-tertiary rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-accent-primary/30"
+              className="w-full px-4 py-2 pl-10 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all"
             />
             <Search
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
               size={18}
             />
           </div>
 
-          {/* Notifications */}
-          <Button variant="ghost" className="relative">
-            <Bell size={20} />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-status-danger rounded-full"></span>
+          <Button variant="ghost" className="relative hover:bg-slate-100">
+            <Bell size={20} className="text-slate-600" />
+            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
           </Button>
 
-          {/* Profil utilisateur - CLIQUABLE */}
-          <button
-            onClick={() => setIsProfileModalOpen(true)}
-            className="w-8 h-8 rounded-full bg-accent-primary/20 flex items-center justify-center hover:bg-accent-primary/30 transition-colors cursor-pointer"
-            title={coachProfile ? `${coachProfile.firstName} ${coachProfile.lastName}` : 'Mon Profil'}
-          >
-            <span className="text-accent-primary font-semibold text-sm">
-              {initials}
-            </span>
-          </button>
+          <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+            <button
+              onClick={() => setIsProfileModalOpen(true)}
+              className="flex items-center gap-2 hover:bg-slate-50 rounded-lg px-2 py-1.5 transition-colors"
+            >
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm">
+                <span className="text-white font-semibold text-sm">
+                  {initials}
+                </span>
+              </div>
+              {coachProfile && (
+                <div className="text-left hidden lg:block">
+                  <p className="text-sm font-semibold text-slate-900">
+                    {coachProfile.firstName} {coachProfile.lastName}
+                  </p>
+                  <p className="text-xs text-slate-500">Coach</p>
+                </div>
+              )}
+            </button>
 
-          {/* Déconnexion */}
-          <Button variant="ghost" onClick={handleSignOut} title="Se déconnecter">
-            <LogOut size={20} />
-          </Button>
+            <Button
+              variant="ghost"
+              onClick={handleSignOut}
+              title="Se déconnecter"
+              className="hover:bg-red-50 hover:text-red-600"
+            >
+              <LogOut size={18} />
+            </Button>
+          </div>
         </div>
       </header>
 

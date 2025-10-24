@@ -16,32 +16,32 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, helperText, fullWidth = false, icon, className, ...props }, ref) => {
     return (
-      <div className={clsx('flex flex-col gap-1.5', fullWidth && 'w-full')}>
+      <div className={clsx('flex flex-col gap-2', fullWidth && 'w-full')}>
         {label && (
-          <label className="text-sm font-medium text-text-primary">
+          <label className="text-sm font-semibold text-slate-700">
             {label}
-            {props.required && <span className="text-status-danger ml-1">*</span>}
+            {props.required && <span className="text-red-600 ml-1">*</span>}
           </label>
         )}
-        
+
         <div className="relative">
           {icon && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
               {icon}
             </div>
           )}
           <input
             ref={ref}
             className={clsx(
-              'w-full px-4 py-2 bg-background-primary border rounded-lg',
-              'text-text-primary placeholder-text-muted',
-              'transition-colors duration-200',
-              'focus:outline-none focus:ring-2 focus:border-accent-primary',
+              'w-full px-4 py-2.5 bg-white border rounded-lg',
+              'text-slate-900 placeholder-slate-400',
+              'transition-all duration-200',
+              'focus:outline-none focus:ring-2 focus:border-blue-500',
               error
-                ? 'border-status-danger focus:ring-status-danger/30'
-                : 'border-background-tertiary focus:ring-accent-primary/30',
+                ? 'border-red-500 focus:ring-red-500/30'
+                : 'border-slate-300 focus:ring-blue-500/30 hover:border-slate-400',
               icon && 'pl-10',
-              props.disabled && 'opacity-50 cursor-not-allowed',
+              props.disabled && 'opacity-50 cursor-not-allowed bg-slate-50',
               className
             )}
             {...props}
@@ -49,11 +49,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <p className="text-sm text-status-danger">{error}</p>
+          <p className="text-sm text-red-600 flex items-center gap-1">
+            <span className="w-1 h-1 bg-red-600 rounded-full"></span>
+            {error}
+          </p>
         )}
-        
+
         {helperText && !error && (
-          <p className="text-sm text-text-muted">{helperText}</p>
+          <p className="text-sm text-slate-500">{helperText}</p>
         )}
       </div>
     );
